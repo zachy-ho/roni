@@ -3,20 +3,17 @@ import { Color } from "ui/theme";
 
 /** Has a button that starts the game */
 export class MainMenu extends Scene {
-  title: GameObjects.Text;
-  background: GameObjects.Rectangle;
-
   constructor() {
     super("MainMenu");
   }
 
   create() {
-    this.background = this.add.rectangle(
+    this.add.rectangle(
       512,
       384,
       1024,
       768,
-      Number(`0x${Color.tertiaryLight}`),
+      parseInt(`0x${Color.tertiaryLight.slice(1)}`, 16),
     );
 
     this.add
@@ -29,7 +26,7 @@ export class MainMenu extends Scene {
       })
       .setOrigin(0.5)
       .setInteractive();
-    this.title = this.add
+    const title = this.add
       .text(512, 460, "Main Menu", {
         fontFamily: "Arial Black",
         fontSize: 38,
@@ -40,10 +37,13 @@ export class MainMenu extends Scene {
       .setOrigin(0.5)
       .setInteractive()
       .on("pointerover", () => {
-        this.title.setColor("#123123");
+        title.setColor("#123123");
       })
       .on("pointerout", () => {
-        this.title.setColor("#ffffff");
+        title.setColor("#ffffff");
+      })
+      .on("pointerdown", () => {
+        this.scene.start("Game");
       });
   }
 }
