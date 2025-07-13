@@ -1,12 +1,11 @@
 import { Scene } from "phaser";
-import Colonel from "../objects/Colonel";
+import Drumstick from "game/objects/Drumstick";
+import Colonel from "game/objects/Colonel";
 
 export class Game extends Scene {
-  camera!: Phaser.Cameras.Scene2D.Camera;
-  camera: Phaser.Cameras.Scene2D.Camera;
-  floor: Phaser.GameObjects.Image;
-  msg_text: Phaser.GameObjects.Text;
-  colonel: Colonel;
+  camera: Phaser.Cameras.Scene2D.Camera | undefined;
+  colonel: Colonel | undefined;
+  drumstick: Drumstick | undefined;
 
   constructor() {
     super("Game");
@@ -14,25 +13,23 @@ export class Game extends Scene {
 
   preload() {
     Colonel.preload(this);
+    Drumstick.preload(this);
     this.load.image("floor", "assets/floor.png");
-
   }
 
   create() {
     this.camera = this.cameras.main;
 
-    this.floor = this.add.image(0, 0, "floor").setOrigin(0, 0);
-    this.floor.setDisplaySize(this.camera.width, this.camera.height);
+    const floor = this.add.image(0, 0, "floor").setOrigin(0, 0);
+    floor.setDisplaySize(this.camera.width, this.camera.height);
 
     // Create the colonel sprite
     this.colonel = new Colonel(this, 512, 384);
-
-    this.input.once("pointerdown", () => {
-      this.scene.start("GameOver");
-    });
+    this.drumstick = new Drumstick(this, 0, 0);
   }
 
   update() {
-    this.colonel.update();
+    this.colonel?.update();
+    this.drumstick?.update();
   }
 }
