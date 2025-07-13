@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import Colonel from "../characters/Colonel";
+import Colonel from "../objects/Colonel";
 
 export class Game extends Scene {
   camera!: Phaser.Cameras.Scene2D.Camera;
