@@ -1,6 +1,7 @@
 import { Scene, Physics } from "phaser";
+import type { Weapon } from "./Weapon";
 
-class Drumstick extends Physics.Arcade.Sprite {
+class Drumstick extends Physics.Arcade.Sprite implements Weapon {
   constructor(scene: Scene, x: number, y: number) {
     super(scene, x, y, "drumstick", 0);
     scene.add.existing(this);
@@ -34,6 +35,8 @@ class Drumstick extends Physics.Arcade.Sprite {
   update() {
     this.anims.play("idle", true);
   }
+
+  use() {}
 }
 
 export default Drumstick;
