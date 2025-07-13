@@ -25,7 +25,7 @@ export class Game extends Scene {
 
     // Create the colonel sprite
     this.colonel = new Colonel(this, 512, 384);
-    this.drumstick = new Drumstick(this, 0, 0);
+    this.drumstick = new Drumstick(this, 1000, 768);
   }
 
   update() {
