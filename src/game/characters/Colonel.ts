@@ -18,8 +18,8 @@ class Colonel extends Physics.Arcade.Sprite {
 
   static preload(scene: Scene) {
     scene.load.spritesheet('colonel', 'assets/colonel.png', {
-      frameWidth: 230,  // make sure this matches your actual sprite dimensions
-      frameHeight: 215
+      frameWidth: 256,
+      frameHeight: 256
     });
   }
 
@@ -62,15 +62,17 @@ class Colonel extends Physics.Arcade.Sprite {
     const speed = 150;
     this.setVelocity(0);
 
+
+    // TODO: fix the spritesheets for all directions
     if (this.cursors.left?.isDown) {
       this.setVelocityX(-speed);
-      this.anims.play('walk-left', true);
+      this.anims.play('walk-down', true);
     } else if (this.cursors.right?.isDown) {
       this.setVelocityX(speed);
-      this.anims.play('walk-right', true);
+      this.anims.play('walk-down', true);
     } else if (this.cursors.up?.isDown) {
       this.setVelocityY(-speed);
-      this.anims.play('walk-up', true);
+      this.anims.play('walk-down', true);
     } else if (this.cursors.down?.isDown) {
       this.setVelocityY(speed);
       this.anims.play('walk-down', true);

@@ -4,7 +4,7 @@ import Colonel from "../characters/Colonel";
 export class Game extends Scene {
   camera!: Phaser.Cameras.Scene2D.Camera;
   camera: Phaser.Cameras.Scene2D.Camera;
-  background: Phaser.GameObjects.Image;
+  floor: Phaser.GameObjects.Image;
   msg_text: Phaser.GameObjects.Text;
   colonel: Colonel;
 
@@ -14,14 +14,15 @@ export class Game extends Scene {
 
   preload() {
     Colonel.preload(this);
+    this.load.image("floor", "assets/floor.png");
+
   }
 
   create() {
     this.camera = this.cameras.main;
-    this.camera.setBackgroundColor(0x00ff00);
 
-    this.background = this.add.image(512, 384, "background");
-    this.background.setAlpha(0.5);
+    this.floor = this.add.image(0, 0, "floor").setOrigin(0, 0);
+    this.floor.setDisplaySize(this.camera.width, this.camera.height);
 
     // Create the colonel sprite
     this.colonel = new Colonel(this, 512, 384);
