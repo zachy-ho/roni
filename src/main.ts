@@ -1,5 +1,7 @@
-// Roguelike game entry point
-// Game will be initialized here
+import StartGame from './game/main';
 
-console.log('Roguelike game boilerplate ready!');
-console.log('Phaser and ROT.js are available for use');
+document.addEventListener('DOMContentLoaded', () => {
+
+    StartGame('game-container');
+
+});
